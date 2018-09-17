@@ -419,11 +419,11 @@ MainWindow::MainWindow(Core::Application *app, QWidget *parent) :
         currentTabState()->expansions.removeOne(index);
     });
 
-#ifdef Q_OS_WIN32
+// #ifdef Q_OS_WIN32
     ui->actionCloseTab->setShortcut(QKeySequence(Qt::Key_W + Qt::CTRL));
-#else
-    ui->actionCloseTab->setShortcut(QKeySequence::Close);
-#endif
+// #else
+//     ui->actionCloseTab->setShortcut(QKeySequence::Close);
+// #endif
     addAction(ui->actionCloseTab);
     connect(ui->actionCloseTab, &QAction::triggered, this, [this]() { closeTab(); });
 
