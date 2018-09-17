@@ -314,6 +314,12 @@ MainWindow::MainWindow(Core::Application *app, QWidget *parent) :
     ui->lineEdit->addAction(goToLineEditAction);
     connect(goToLineEditAction, &QAction::triggered, this, [this]() { ui->lineEdit->setFocus(); });
 
+    QAction* clearLineEditAction = new QAction(ui->lineEdit);
+    clearLineEditAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_U));
+    clearLineEditAction->setShortcutContext(Qt::ApplicationShortcut);
+    ui->lineEdit->addAction(clearLineEditAction);
+    connect(clearLineEditAction, &QAction::triggered, this, [this]() { ui->lineEdit->clearQuery(); });
+
     ui->tocListView->setItemDelegate(new SearchItemDelegate(ui->tocListView));
     connect(ui->tocSplitter, &QSplitter::splitterMoved, this, [this]() {
         m_settings->tocSplitterState = ui->tocSplitter->saveState();
